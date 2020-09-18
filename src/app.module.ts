@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { from } from 'rxjs';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './modules/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [],
+  imports: [TypeOrmModule.forRoot(), 
+    AuthModule,
+    ConfigModule.forRoot()
+  
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
